@@ -12,7 +12,11 @@ alias n="nvim"
 alias ñ="du -sh * | sort -h"
 o()
 {
-	nemo "$(pwd)" &
+	if [[ -z "$1" ]]; then
+		nemo "$(pwd)" &
+	else
+		nemo "$1"
+	fi
 }
 alias p="python3"
 alias t="tmux"
@@ -51,7 +55,7 @@ alias top="atop"
 alias vim="nvim"
 alias www="python -m SimpleHTTPServer 8000"
 alias grub="sudo nano /etc/default/grub"
-alias book="o ~/Escritorio/BOOKSCRATCH/UOCBookScratcher/books"
+alias book="o ${HOME}/Escritorio/BOOKSCRATCH/UOCBookScratcher/books"
 alias grubup="sudo update-grub"
 alias date="date +”%d-%b-%Y”"
 alias Reboot="sudo reboot"
@@ -83,3 +87,4 @@ alias upgradealias="source ~/.bashrc"
 alias aliasupgrade="source ~/.bashrc"
 alias newt="tmux new -s"
 alias oldt="tmux new -s default"
+
