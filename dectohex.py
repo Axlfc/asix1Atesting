@@ -1,18 +1,52 @@
-def cambiarDigits(digits):
-    decimals = [10, 11, 12, 13, 14, 15]
-    hexadecimals = ["A", "B", "C", "D", "E", "F"]
-    for c in range(7):
-        if digits == decimals[c - 1]:
-            digits = hexadecimals[c - 1]
-    return digits
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+import sys
+def canviarDigits(num):
+    if num == 10:
+        num = "A"
+    elif num == 11:
+        num = "B"
+    elif num == 12:
+        num = "C"
+    elif num == 13:
+        num = "D"
+    elif num == 14:
+        num = "E"
+    elif num == 15:
+        num = "F"
+    elif num >= 0 and num < 10:
+        num = str(num)
+    else:
+        print("ERROR: hextodec needs hexadecimal characters")
+        exit(1)
+    return num
 
-def DecAlHex():
-    dec = int(input("Introdueix un nombre decimal:\t"))
+def DecAlHex(num):
+    try:
+        dec = int(num)
+    except ValueError:
+        print("ERROR: dectohex needs decimal characters")
+        exit(1)
     hex = ""
     while dec != 0:
-        rem = cambiarDigits(dec % 16)
+        rem = canviarDigits(dec % 16)
         hex = str(rem) + hex
         dec = int(dec / 16)
-    print("Resultat: ",hex)
+    print(hex)
 
-DecAlHex()
+
+
+try:
+    if not sys.stdin.isatty():
+        y = sys.stdin.readlines()[0].split(" ")[0].rstrip("\n").lstrip("\n")
+        DecAlHex(y)
+        exit(0)
+except ValueError:
+    print("ERROR: dectohex needs decimal characters")
+    exit(1)
+
+if len(sys.argv) == 1:
+    print("ERROR: dectohex needs one argument")
+    exit(2)
+
+DecAlHex(sys.argv[1])
