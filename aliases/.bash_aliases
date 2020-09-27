@@ -114,7 +114,9 @@ alias su="sudo -i"
 alias sv="su v"
 alias tx="tilix &"
 alias tk="t kill-ses"
-alias kt="t kill-session -t $"
+function kts {
+  tmux kill-session -t $1
+}
 alias tls="t ls"
 alias wd="date +%A"
 alias ua="upgradealias"
