@@ -130,7 +130,8 @@ alias iptlistin="ipt INPUT"
 alias iptlistout="iptlistout"
 alias lll="ls -l $directory$prefix"
 alias lsl="ls -lhFA | less"
-mcd () {
+mcd ()
+{
     mkdir -p $1
     cd $1
 }
@@ -141,7 +142,7 @@ alias sha1="openssl sha1"
 alias top="atop"
 alias txt="gedit"
 alias vim="nvim"
-alias vis='vim "+set si"'
+alias vis='vis "+set si"'
 alias www="python -m SimpleHTTPServer 8000"
 alias xyz="cat $0"
 alias zsh="zsh"
@@ -153,7 +154,6 @@ alias iftop='iftop -i eth1'
 alias free="free -mt"
 alias tcpdump='tcpdump -i eth1'
 alias ethtool='ethtool eth1'
-alias fastping="pinc -c 100 -s.2"
 alias grub="sudo nano /etc/default/grub"
 alias grubup="sudo update-grub"
 alias header='curl -I'
@@ -161,7 +161,7 @@ alias left="ls -t -1"
 alias most="du -shx * | g -w "[0-9]*G""
 alias mount="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort"
 alias mkdir='mkdir -pv'
-alias path="alias path='echo -e ${PATH//:/\\n}'"
+alias path="echo -e ${PATH//:/\\n}"
 alias ping="ping -c 5"
 alias ports="netstat -tulanp"
 alias root="sudo -i"
@@ -202,4 +202,3 @@ alias editalias="gedit ~/.bash_aliases && upgradealias"
 alias gedit="featherpad"
 alias newt="tmux new -s"
 alias oldt="tmux new -s default"
-
