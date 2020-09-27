@@ -105,6 +105,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -e $HOME/.bash_functions ]; then
+    source $HOME/.bash_functions
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -127,17 +131,19 @@ shopt -s cmdhist
   extract () {
     if [ -f $1 ] ; then
       case $1 in
-        *.tar.bz2)   tar xjf $1        ;;
-        *.tar.gz)    tar xzf $1     ;;
-        *.bz2)       bunzip2 $1       ;;
+        *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)       tar xvf $1      ;;
+        *.bz2)       bunzip2 $1     ;;
         *.rar)       rar x $1     ;;
         *.gz)        gunzip $1     ;;
         *.tar)       tar xf $1        ;;
+        *.lzma)      unlzma $1      ;;
         *.tbz2)      tar xjf $1      ;;
         *.tgz)       tar xzf $1       ;;
         *.zip)       unzip $1     ;;
         *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1    ;;
+        *.*.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)        7z x $1    ;;
+        *.xz)        unxz ./"$n"        ;;
+        *.exe)       cabextract ./"$n"  ;;
         *)           echo "'$1' cannot be extracted via extract()" ;;
       esac
     else
