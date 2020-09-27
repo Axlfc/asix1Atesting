@@ -20,7 +20,7 @@ e()
 		else
 			if [[ -d "$1" ]]; then
 				cd $1
-				git status #2> tmp
+				 #2> tmp
 				#rm -f tmp
 				if [[ $? == 0 ]]; then
 					gitk --all --date-order &
@@ -77,7 +77,7 @@ alias at="tmux a -t"
 alias ax="chmod a+x"
 alias bc="bc -l"
 alias bi="sudo apt --fix-broken install"
-alias cd..='cd ..'
+alias cd..="cd .."
 alias cg="cd `git rev-parse --show-toplevel`"
 alias cp="cp -prb"
 alias df="pydf"
@@ -90,11 +90,12 @@ alias fg="fgrep --color"
 alias fh="find . -name "
 alias fw="iptlist"
 alias fx="cmatrix"
-alias ga='git add'
-alias gaa='git add .'
-alias gaaa='git add --all'
 alias gr="g reset --hard"
+alias agg="git add"
+alias gaa="gir add ."
+alias gaaa="git add --all"
 alias gh="history | grep $1"
+alias status="git status"
 alias k9="kill -9"
 alias la="ll -A"
 alias lc="ls .ltcr"
@@ -126,12 +127,10 @@ alias cpu="lscpu"
 alias cpv="rsync -ah --info=progress2"
 alias ftc="ls | rev | cut -d'.' -f1 | rev | sort | uniq -c"
 alias fsh="fish"
-alias agg="git add"
-alias gaa="gir add ."
-alias gaaa="git add --all"
-alias status="git status"
-alias gcommit="git add -A; git commit -am "
-alias his="history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10"
+his()
+{
+	history | awk "{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}" | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
+}
 alias ipe="curl ipinfo.io/ip"
 alias ipi="hostname -I"
 alias ipt="sudo /sbin/iptables"
@@ -140,48 +139,46 @@ alias iptlistin="ipt INPUT"
 alias iptlistout="iptlistout"
 alias lll="ls -l $directory$prefix"
 alias lsl="ls -lhFA | less"
-mcd ()
+mcd()
 {
     mkdir -p $1
     cd $1
 }
 alias mem="free -m -l -t"
 alias mnt="mount | grep -E ^/dev | column -t"
-alias sid='env | grep ORACLE_SID'
+alias sid="env | grep ORACLE_SID"
 alias sha1="openssl sha1"
 alias top="atop"
 alias txt="gedit"
 alias vim="nvim"
-alias vis='vis "+set si"'
+alias vis="vis '+set si'"
 alias www="python -m SimpleHTTPServer 8000"
 alias xyz="cat $0"
 alias zsh="zsh"
 alias book="o ${HOME}/Escritorio/BOOKSCRATCH/UOCBookScratcher/books"
 alias date="date +”%d-%b-%Y”"
-alias dnstop='dnstop -l 5  eth1'
-alias vnstat='vnstat -i eth1'
-alias iftop='iftop -i eth1'
+alias dnstop="dnstop -l 5  eth1"
+alias vnstat="vnstat -i eth1"
+alias iftop="iftop -i eth1"
 alias free="free -mt"
-alias tcpdump='tcpdump -i eth1'
-alias ethtool='ethtool eth1'
+alias tcpdump="tcpdump -i eth1"
+alias ethtool="ethtool eth1"
 alias grub="sudo nano /etc/default/grub"
 alias grubup="sudo update-grub"
-alias header='curl -I'
+alias header="curl -I"
 alias left="ls -t -1"
 alias most="du -shx * | g -w "[0-9]*G""
 alias mount="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort"
-alias mkdir='mkdir -pv'
+alias mkdir="mkdir -pv"
 alias path="echo -e ${PATH//:/\\n}"
 alias ping="ping -c 5"
 alias ports="netstat -tulanp"
 alias root="sudo -i"
 alias wget="wget -c"
 alias which="type -a"
-alias count='find . -type f | wc -l'
+alias count="ind . -type f | wc -l"
 alias curli="curl -I"
 alias speed="speedtest-cli --server 17233 --simple"
-alias status="git status"
-alias gcommit="git add -A; git commit -am "
 alias serverspeed="speedtest-cli --list"
 alias httpTest="sudo /usr/sbin/apachectl -t && /usr/sbin/apachectl -S"
 alias httpReload="sudo /usr/sbin/apachectl -k graceful"
@@ -198,14 +195,14 @@ alias HDD="cd ..; cd ..; cd /media/sf_Shared_Files; o; exit"
 alias HM="cd ${HOME}"
 alias OS="uname"
 alias USAGE="du -h --max-depth"
+alias THM="theme list"
 alias TOTALUSAGE="df -hl --total | grep total"
 alias PSMEM="ps auxf | sort -nr -k 4"
 alias PSMEM10="ps auxf | sort -nr -k 4 | head -10"
-alias PSCPU='ps auxf | sort -nr -k 3'
-alias PSCPU10='ps auxf | sort -nr -k 3 | head -10'
+alias PSCPU="ps auxf | sort -nr -k 3"
+alias PSCPU10="ps auxf | sort -nr -k 3 | head -10"
 alias MCDSTATS="/usr/bin/memcached-tool 10.10.27.11:11211 stats"
 alias MCDSHOW="/usr/bin/memcached-tool 10.10.27.11:11211 display"
-alias THM="theme list"
 alias Reboot="sudo reboot"
 alias Install="sudo apt-get install || sudo apt install"
 alias Update="sudo apt-get update && sudo apt-get upgrade -y"
