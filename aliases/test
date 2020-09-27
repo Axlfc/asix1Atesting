@@ -18,7 +18,7 @@ sudo systemctl list-unit-files
 
 SSH
 sudo semanage port -a -t ssh_port_t -p tcp 2222
-sudo systemctl restart sshd
+vim /etc/ssh/sshd_config
 
 SSH configuration files are located at /etc/ssh/
     ssh_config: defines SSH rules for clients. It means that it defines rules that are applied 
@@ -43,9 +43,135 @@ ssh -p 2222 <user>@<ip_address>
 #refresh path 
 hash -r
 
+#Copy one single local file to a remote destination
+scp /path/to/source-file user@host:/path/to/destination-folder/
 
+#So, if you wan to copy the file /home/user/table.csv to a remote host named host.example.com and copy there to jane's home folder, use this command.
+scp /home/user/table.csv jane@host.example.com:/home/jane/
+scp jane@host.example.com:/home/jane/table.csv /home/user/
+
+#Copy one single file from a remote server to another remote server
+scp user1@server1:/path/to/file user2@server2:/path/to/folder/
+scp jane@host.example.com:/home/jane/table.csv pete@host2.example.com:/home/pete/
+#Copy one single file from a remote server to your current local server
+scp user@host:/path/to/source-file /path/to/destination-folder
+
+#Copy files between two remote server that are not in the same network
+scp -3 user@host1:/file user@host2:/file
+
+#Copy one single file from a remote host to the same remote host in another location
+scp jane@host.example.com:/home/jane/table.csv pete@host.example.com:/home/pete/
+
+#Copy multiple files with one command
+scp file1.txt file2.txt file3.txt pete@host.example.com:/home/pete/
+scp /path/to/file1.txt /path/to/file2.txt /path/to/file3.txt pete@host.example.com:/home/pete/
+
+#Copy all files of a specific type
+scp /path/to/folder/*.ext user@server:/path/to/folder/
+scp /home/user/*.txt jane@host.example.com:/home/jane/
+
+#Copy all files in a folder to a remote server
+scp /path/to/folder/* user@server:/path/to/folder/
+scp /home/user/html/* jane@host.example.com:/home/jane/backup/
+
+#Copy all files in a folder recursively to a remote server
+scp -r /home/user/html/* jane@host.example.com:/home/jane/backup/
+
+#Copy a folder and all its contents to a remote server
+scp -r /path/to/source-folder user@server:/path/to/destination-folder/
+scp -r /home/user/html jane@host.example.com:/home/jane/backup/
+
+#Copy files recursively preserving file attributes
+scp -rp sourcedirectory user@dest:/path
+
+#Move instead of copy files from one server to another
+#This only works if you have configured your Linux ssh server to work with ssh-key instead of password
+#Disabling Root Login on your SSH server
+#To disable root login on your SSH server, modify the following line
+'
+#PermitRootLogin
+
+PermitRootLogin no
+'
+
+#Edit the file /etc/ssh/sshd_config
+for file in bar*; do scp "$file" user@server:/destination && rm "$file" ; done
+
+#Changing SSH default port
+#Edit your sshd_config configuration file and look for the following line.
+'
+#Port 22
+'
 #in bashrc profile... "~/.bash_profile"
+
+
 alias webserver='ssh sk@192.168.225.22'
 alias dns='ssh root@server.example.com'
 alias dhcp='ssh axl@192.168.225.25 -p 2232'
 alias ubuntu='ssh axl@192.168.225.50 -i ~/.ssh/id_rsa_remotesystem'
+
+#Copy files from Windows to Linux
+#You can use scp command to copy files from Linux to Windows
+
+pscp c:\path\to\file user@remote-server:/path/to/remote-folder
+
+#Copy files from Linux to Windows
+
+#You can also copy files from Windows to Linux, using pscp from the Windows computer you can "push" the files to the Linux, Max OS X or *BSD server.
+
+pscp user@remote-server:/path/to/remote-file c:\path\to\local-folder\
+
+#Specify protocol
+
+#You can specify the protocol that scp command for Windows will use at the time of connection.
+
+-scp
+    This will force pscp to use scp protocol
+-sftp
+    This will force pscp to use sftp protocol, which is a newer protocol than scp protocol
+	
+#I strongly recommend you to open two sessions if doing this from a remote connection, and never close one of them. Do this in case you need to roll back the configuration, this way you will not lock you out by mistake.
+
+#locate this line with, writing this once editing with vi or vim
+
+:/Protocol
+
+#if it says
+
+Protocol 2, 1
+
+#change it to:
+
+Protocol 2
+
+#This will enable only ssh2 which is more secure that ssh, do not do this if you need to log with a client that only support ssh, and not ssh2 protocol. Next locate this line "PermitRootLogin yes" by entering this on your vi or vim editor
+
+:/PermitRootLogin yes
+
+#and change it to this:
+
+PermitRootLogin no
+
+#and save the file.
+
+Disable password login for any other user in the server
+
+Now, we need to lock the password of all other users in the server, except root, but remember that log in via root account using ssh is not permitted in the server, that way the only possible way to log into the server will be via, the public/private ssh key. To lock the password of the rest of users, use this command.
+
+sudo passwd -l [user]
+
+For every user, you have on that server that is allowed to log into it, it means, it has a shell. Alternate Method (Updated:10.11.10) As suggested by, Stephen, if you need local authentication, the above method of locking the users account is not possible, this is a better way: Edit the file /etc/ssh/sshd_config and be sure this line is there:
+
+PasswordAuthentication no
+
+The default is yes. then restart ssh, and you are done.
+
+
+You will need to repeat step 1, with all users, you want to have access to the server, before, 
+locking their passwords, or share the keys using a thumb key memory or any other way.
+
+Be sure to have physical access to the server, before locking yourself out, or test your keys, 
+before doing it, failing to do so, may lock you completely out of the server, you have been warned
+
+Note 2: If you are using some account as an admin account with sudo access, to the system, 
+be sure to disable the password challenge, for that user using visudo, or you will not be able to use sudo again
