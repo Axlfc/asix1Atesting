@@ -1,4 +1,5 @@
-function cl() {
+function cl() 
+{
     DIR="$*";
         # if no DIR given, go home
         if [ $# -lt 1 ]; then
@@ -7,4 +8,8 @@ function cl() {
     builtin cd "${DIR}" && \
     # use your preferred ls command
         ls -F --color=auto
+}
+function es()
+{
+
 }
