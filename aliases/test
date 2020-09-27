@@ -1,0 +1,51 @@
+ssh -p 2222 axl@ipi
+
+ssh -p 2222 <user>@<ip_address>
+
+nano ~/.ssh/config
+
+aliases=
+sudo systemctl
+sudo systemctl enable ssh
+#Enable SSH server on system boot
+sudo systemctl list-unit-files | grep enabled | grep ssh
+sudo systemctl enable ssh
+sudo systemctl --type=service
+sudo systemctl --type=mount
+sudo systemctl -t timer 
+sudo systemctl list-unit-files
+
+
+SSH
+sudo semanage port -a -t ssh_port_t -p tcp 2222
+sudo systemctl restart sshd
+
+SSH configuration files are located at /etc/ssh/
+    ssh_config: defines SSH rules for clients. It means that it defines rules that are applied 
+	everytime you use SSH to connect to a remote host or to transfer files between hosts;
+    sshd_config: defines SSH rules for your SSH server. It is used for example to define 
+	the reachable SSH port or to deny specific users from communicating with your server.
+
+
+Enabling SSH traffic on your firewall settings
+sudo firewall-cmd --permanent --zone=public --add-service=ssh
+sudo firewall-cmd --reload
+?
+sudo firewall-cmd --list-all | grep services
+
+services : cockpit dhcpv6-client http https ssh
+?
+#default port in ssh = -p 22 2222
+netstat -tulpn | grep :22
+
+#usage:
+ssh -p 2222 <user>@<ip_address>
+#refresh path 
+hash -r
+
+
+#in bashrc profile... "~/.bash_profile"
+alias webserver='ssh sk@192.168.225.22'
+alias dns='ssh root@server.example.com'
+alias dhcp='ssh axl@192.168.225.25 -p 2232'
+alias ubuntu='ssh axl@192.168.225.50 -i ~/.ssh/id_rsa_remotesystem'
