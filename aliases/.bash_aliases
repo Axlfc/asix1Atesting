@@ -65,7 +65,7 @@ o()
 alias p="python3"
 alias q="exit"
 alias r="rm -R"
-alias t="touch"
+alias t="tmux"
 alias u="du -h --max-depth"
 alias v="nvim"
 alias w="which"
