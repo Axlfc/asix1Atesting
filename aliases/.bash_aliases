@@ -80,7 +80,10 @@ alias cd..='cd ..'
 alias cg="cd `git rev-parse --show-toplevel`"
 alias cp="cp -prb"
 alias df="pydf"
-alias du="ncdu"
+du ()
+{
+	ncdu
+}
 alias eg="egrep --color"
 alias fg="fgrep --color"
 alias fh="find . -name "
