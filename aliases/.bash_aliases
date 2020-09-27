@@ -19,7 +19,13 @@ e()
 		else
 			if [[ -d "$1" ]]; then
 				cd $1
-				o
+				git status #2> tmp
+				#rm -f tmp
+				if [[ $? == 0 ]]; then
+					gitk --all --date-order &
+				else
+					o
+				fi
 			else
 				#Inexistent route, new file
 				#mkdir -p "$1"
@@ -36,7 +42,7 @@ e()
 		fi
 	fi
 }
-alias f="find $"
+alias f="find"
 alias g="grep"
 alias h="history"
 alias k="gitk --all --date-order 	&"
