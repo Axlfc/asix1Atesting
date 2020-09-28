@@ -1,0 +1,3 @@
+binary = input("Enter number in Binary Format: ")
+decimal = int(binary, 2)
+print(decimal)

@@ -1,8 +1,15 @@
-# binary addition - optimal approach
+# binary addition
 # rules
 # 1 + 0 = 1
 # 1 + 1 = 0 (carry - 1)
 # 1 + 1 + 1(carry) = 1 (carry -1)
+
+# binary multiplication - optimal approach
+# rules
+# 0 * 0 = 0
+# 1 * 0 = 0
+# 0 * 1 = 0
+# 1 * 1 = 1
 
 #print("For more than 2 binary values inserted: ")
 #entries = list(map(int, input().split()))
@@ -91,3 +98,4 @@ outputList = ' '.join([str(item) for item in out_arr]).strip(" ")
 import re
 result = int(re.sub('[\s+]', '', outputList))
 print(result)
+
