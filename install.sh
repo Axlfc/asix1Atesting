@@ -14,15 +14,17 @@ main()
       chmod u+x ${HOME}/.local/bin/hextodec
     fi
 
+    if [[ -f "bintodec.py" ]]; then
+      cp bintodec.py ${HOME}/.local/bin/bintodec
+      chmod u+x ${HOME}/.local/bin/bintodec
+    fi
+
+    if [[ -f "dectobin.py" ]]; then
+      cp dectobin.py ${HOME}/.local/bin/dectobin
+      chmod u+x ${HOME}/.local/bin/dectobin
+    fi
+
   fi
-  packettracer_launcher="[Desktop Entry]
-Type=Application
-Name=Packer Tracer
-Icon=/opt/pt/art/Workspace/Logical/iMultiDevices@2x.png
-Terminal=false
-Exec=packettracer
-"
-echo -e "${packettracer_launcher}" > ${HOME}/Escritorio/packettracer.desktop
 
 }
 
