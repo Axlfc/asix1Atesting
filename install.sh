@@ -25,6 +25,14 @@ main()
     fi
 
   fi
+  packettracer_launcher="[Desktop Entry]
+Type=Application
+Name=Packer Tracer
+Icon=/opt/pt/art/Workspace/Logical/iMultiDevices@2x.png
+Terminal=false
+Exec=packettracer
+"
+echo -e "${packettracer_launcher}" > ${HOME}/Escritorio/packettracer.desktop  
 
 }
 
