@@ -1,3 +1,5 @@
+MANTAIN ALIAS IN ROOT MODE #TOP PRIORITY
+
 ssh -p 2222 axl@ipi
 
 ssh -p 2222 <user>@<ip_address>
