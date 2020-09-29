@@ -126,7 +126,7 @@ alias rm="rm -i --preserve-root"
 alias rs="rsync"
 alias sd="sed"
 alias so="sort"
-alias su="sudo -i"
+alias su="sudo -E bash"
 alias sv="su v"
 ta()
 {
