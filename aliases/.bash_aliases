@@ -2,7 +2,7 @@ alias printest="echo 'test'"
 alias a="echo '---------------Alias----------------';alias"
 alias b="bash"
 alias c="clear"
-alias d="rm"
+alias d="pwd"
 e()
 {
 	if [[ -z "$1" ]]; then
