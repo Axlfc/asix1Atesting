@@ -24,6 +24,11 @@ main()
       chmod u+x ${HOME}/.local/bin/dectobin
     fi
 
+    if [[ -f "bincalc.py" ]]; then
+      cp bincalc.py ${HOME}/.local/bin/bincalc
+      chmod u+x ${HOME}/.local/bin/bincalc
+    fi
+
   fi
   packettracer_launcher="[Desktop Entry]
 Type=Application
