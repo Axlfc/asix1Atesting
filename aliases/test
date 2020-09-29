@@ -1,3 +1,24 @@
+What tmux command should I use?
+Most users have one tmux session per machine that they wish to either create (if needed) or attach to (if possible). Use this command:
+tmux -CC new -A -s main
+
+What ssh command should I use?
+If you wish to run tmux on a remote host over ssh, use this command:
+ssh -t example.com 'tmux -CC new -A -s main'
+The -t argument says to use a TTY, which tmux needs to be happy.
+
+I keep having to reattach because my ssh connection dies when my IP address changes
+Use Eternal Terminal. It tunnels ssh connections over a more reliable transport and just works. Then the command is:
+et -c "tmux -CC new -A -s main" example.com  (https://eternalterminal.dev/)
+
+Eternal Terminal (ET) is a remote shell that automatically reconnects without interrupting the session.
+ET uses ssh for handshaking and encryption, so you must be able to ssh into the machine from the client. Make sure that you can ssh user@hostname.
+ET uses TCP, so you need an open port on your server. By default, it uses 2022.
+Once you have an open port, the syntax is similar to ssh: et user@hostname[:port]
+If you have SSH listening on a different port or with special parameters, this must be specified in your ssh_config file. ET will automatically use your ssh_config file when making connections.
+
+
+
 ssh -p 2222 axl@ipi
 
 ssh -p 2222 <user>@<ip_address>
