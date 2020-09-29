@@ -113,9 +113,20 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias rm="rm -i --preserve-root"
 alias su="sudo -i"
 alias sv="su v"
+ta()
+{
+  if [[ -z $1 ]]; then
+    t attach
+  else
+    t attach -t "$1"
+  fi
+}
 alias tx="tilix &"
 alias tk="t kill-ses"
-kts() 
+alias tl="t ls"
+alias tds="t a #"
+alias tks="tmux kill-server"
+tsk() 
 {
   tmux kill-session -t $1
 }
