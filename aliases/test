@@ -17,7 +17,7 @@ ET uses TCP, so you need an open port on your server. By default, it uses 2022.
 Once you have an open port, the syntax is similar to ssh: et user@hostname[:port]
 If you have SSH listening on a different port or with special parameters, this must be specified in your ssh_config file. ET will automatically use your ssh_config file when making connections.
 
-
+https://www.cyberciti.biz/faq/use-bash-aliases-ssh-based-session/
 
 ssh -p 2222 axl@ipi
 
