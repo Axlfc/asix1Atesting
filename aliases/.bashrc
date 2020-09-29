@@ -135,10 +135,7 @@ shopt -s cmdhist
         *.bz2)       bunzip2 $1     ;;
         *.rar)       rar x $1     ;;
         *.gz)        gunzip $1     ;;
-        *.tar)       tar xf $1        ;;
         *.lzma)      unlzma $1      ;;
-        *.tbz2)      tar xjf $1      ;;
-        *.tgz)       tar xzf $1       ;;
         *.zip)       unzip $1     ;;
         *.Z)         uncompress $1  ;;
         *.*.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)        7z x $1    ;;
@@ -151,4 +148,3 @@ shopt -s cmdhist
     fi
   }
 alias upgradealias="source ~/.bashrc"
-
