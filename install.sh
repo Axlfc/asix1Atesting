@@ -35,7 +35,7 @@ main()
     fi
 
     if [[ -f "bintoascii.py" ]]; then
-      cp bincalc.py ${HOME}/.local/bin/bintoascii
+      cp bintoascii.py ${HOME}/.local/bin/bintoascii
       chmod u+x ${HOME}/.local/bin/bintoascii
     fi
 

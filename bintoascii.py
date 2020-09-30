@@ -7,9 +7,9 @@ def bta(binary):
     try:
         binary = int(sys.argv[1], 2)
         binarystr = str(binary)
-        binarystr = "0b" + binarystr
+        binarystr = "0b" + binarystr.strip(" ")
         print(binary.to_bytes((binary.bit_length() + 7) // 8, 'big').decode())
     except ValueError:
         print("ERROR: bintoascii needs binary characters")
         exit(1)
-bta(sys.argv[1])
+print(bta(sys.argv[1]))
