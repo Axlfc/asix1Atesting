@@ -71,7 +71,7 @@ alias u="du -h --max-depth"
 alias v="nvim"
 alias wh="which"
 alias x="exit"
-alias y="date +?%Y?"
+alias y="date +”%Y”"
 alias z="zsh"
 alias at="tmux a -t"
 alias au="cut -d: -f1 /etc/passwd | so"
@@ -83,7 +83,7 @@ alias cd..="cd .."
 alias cg="cd `git rev-parse --show-toplevel`"
 alias cp="cp -prb"
 alias cr="cron"
-alias crjobs="crontab ?e"
+alias crjobs="crontab –e"
 alias ct="cut"
 alias df="pydf"
 du ()
@@ -144,10 +144,15 @@ alias tds="t a #"
 alias tks="tmux kill-server"
 tsk() 
 {
-  tmux kill-session -t $1
+  t kill-session -t $1
 }
 alias tls="t ls"
-alias tconf="gedit .tmux.conf"
+trs()
+{
+	t rename-session $1
+}
+alias tconf="gedit ${HOME}/.tmux.conf"
+alias tconfig="tconf"
 alias trefresh="t refresh-client -S"
 alias ua="useradd"
 alias un="uniq"
@@ -217,7 +222,7 @@ alias book="o ${HOME}/Escritorio/BOOKSCRATCH/UOCBookScratcher/books"
 alias browser="lynx"
 alias CALENDAR="cal"
 alias CALCULATOR="bc"
-alias date="date +?%d-%b-%Y?"
+alias date="date +”%d-%b-%Y”"
 alias dnstop="dnstop -l 5  eth1"
 alias vnstat="vnstat -i eth1"
 alias iftop="iftop -i eth1"
@@ -272,7 +277,7 @@ alias PSCPU="ps auxf | sort -nr -k 3"
 alias PSCPU10="ps auxf | sort -nr -k 3 | head -10"
 alias MCDSTATS="/usr/bin/memcached-tool 10.10.27.11:11211 stats"
 alias MCDSHOW="/usr/bin/memcached-tool 10.10.27.11:11211 display"
-alias Shutdown="shutdown ?r now"
+alias Shutdown="shutdown –r now"
 alias Reboot="sudo reboot"
 alias Install="sudo apt-get install || sudo apt install"
 alias Update="sudo apt-get update && sudo apt-get upgrade -y"
