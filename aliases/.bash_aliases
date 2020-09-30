@@ -146,6 +146,7 @@ tsk()
   tmux kill-session -t $1
 }
 alias tls="t ls"
+alias tconf="gedit .tmux.conf"
 alias ua="useradd"
 alias un="uniq"
 alias us="users"
