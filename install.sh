@@ -29,6 +29,16 @@ main()
       chmod u+x ${HOME}/.local/bin/bincalc
     fi
 
+    if [[ -f "asciitobin.py" ]]; then
+      cp asciitobin.py ${HOME}/.local/bin/asciitobin
+      chmod u+x ${HOME}/.local/bin/asciitobin
+    fi
+
+    if [[ -f "bintoascii.py" ]]; then
+      cp bincalc.py ${HOME}/.local/bin/bintoascii
+      chmod u+x ${HOME}/.local/bin/bintoascii
+    fi
+
   fi
   packettracer_launcher="[Desktop Entry]
 Type=Application
