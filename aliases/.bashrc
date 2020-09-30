@@ -148,6 +148,12 @@ shopt -s cmdhist
         echo "'$1' is not a valid file"
     fi
   }
+# create a global per-pane variable that holds the pane's PWD
+cd(){
+    builtin cd $1
+    tmux refresh-client -S
+}
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 
 alias upgradealias="source ~/.bashrc"
-
