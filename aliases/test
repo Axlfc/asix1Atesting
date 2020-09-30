@@ -178,6 +178,8 @@ before doing it, failing to do so, may lock you completely out of the server, yo
 Note 2: If you are using some account as an admin account with sudo access, to the system, 
 be sure to disable the password challenge, for that user using visudo, or you will not be able to use sudo again
 
+#MOSH TEST CASE HAVING IN COUNT
+
 What tmux command should I use?
 Most users have one tmux session per machine that they wish to either create (if needed) or attach to (if possible). Use this command:
 tmux -CC new -A -s main
