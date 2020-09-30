@@ -8,6 +8,7 @@ main()
   rm -f ${HOME}/.local/bin/bincalc
   rm -f ${HOME}/.local/bin/asciitobin
   rm -f ${HOME}/.local/bin/bintoascii
+  rm -f ${HOME}/.local/bin/asciivalue
 }
 
 main "%@"

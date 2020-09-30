@@ -39,6 +39,11 @@ main()
       chmod u+x ${HOME}/.local/bin/bintoascii
     fi
 
+    if [[ -f "asciivalue.py" ]]; then
+      cp asciivalue.py ${HOME}/.local/bin/asciivalue
+      chmod u+x ${HOME}/.local/bin/asciivalue
+    fi
+
   fi
   packettracer_launcher="[Desktop Entry]
 Type=Application
