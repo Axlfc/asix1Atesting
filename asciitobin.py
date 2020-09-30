@@ -10,4 +10,4 @@ def bta(asciitext):
     except ValueError:
         print("ERROR: asciitobin needs ASCII characters")
         exit(1)
-print(bta(sys.argv[1]))
+bta(sys.argv[1])

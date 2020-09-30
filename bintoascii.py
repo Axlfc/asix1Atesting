@@ -12,4 +12,4 @@ def bta(binary):
     except ValueError:
         print("ERROR: bintoascii needs binary characters")
         exit(1)
-print(bta(sys.argv[1]))
+bta(sys.argv[1])
