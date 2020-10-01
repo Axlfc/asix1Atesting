@@ -127,28 +127,6 @@ alias dummycommit="git add -A; git commit -am "changes"; git push "
 HISTIGNORE="ls:ps:history:l:pwd:top:gitk"
 shopt -s cmdhist
 
-
-# Function that allows to extract any type of compressed files
-extract () {
-if [ -f $1 ] ; then
-    case $1 in
-    *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)       tar xvf $1      ;;
-    *.bz2)       bunzip2 $1     ;;
-    *.rar)       rar x $1     ;;
-    *.gz)        gunzip $1     ;;
-    *.lzma)      unlzma $1      ;;
-    *.zip)       unzip $1     ;;
-    *.Z)         uncompress $1  ;;
-    *.*.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)        7z x $1    ;;
-    *.xz)        unxz ./"$n"        ;;
-    *.exe)       cabextract ./"$n"  ;;
-    *)           echo "'$1' cannot be extracted via extract()" ;;
-    esac
-else
-    echo "'$1' is not a valid file"
-fi
-}
-
 # create a global per-pane variable that holds the pane's PWD
 export PS9=$PS9'$( [ -n $TMUX ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) $PWD)'
 
