@@ -1,4 +1,4 @@
-echo â~/.bashrc loaded!â
+echo “~/.bashrc loaded!”
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -148,6 +148,7 @@ else
     echo "'$1' is not a valid file"
 fi
 }
+
 # create a global per-pane variable that holds the pane's PWD
 export PS9=$PS9'$( [ -n $TMUX ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) $PWD)'
 
@@ -164,8 +165,6 @@ if [ -z "$TMUX" ]; then
         tmux
     fi
 fi
-
-
 
 cd()
 {
