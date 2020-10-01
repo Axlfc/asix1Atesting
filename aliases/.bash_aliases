@@ -1,8 +1,7 @@
-alias printest="echo 'test'"
+alias printestt="echo 'test'"
 alias a="echo '---------------Alias----------------';alias"
 alias b="bash"
 alias c="clear"
-alias d="pwd"
 e()
 {
 	if [[ -z "$1" ]]; then
@@ -136,6 +135,10 @@ ta()
     t attach -t "$1"
   fi
 }
+ts()
+{
+	t switch -t $1
+}
 alias tx="tilix &"
 alias tk="t kill-ses"
 alias tl="t ls"
@@ -154,6 +157,8 @@ alias tconf="gedit ${HOME}/.tmux.conf"
 alias tconfig="tconf"
 alias trefresh="t refresh-client -S"
 alias tupgrade="t source ${HOME}/.tmux.conf"
+alias ttmplt="teamocil sample"
+alias tedittmplt="gedit ${HOME}/.teamocil/sample.yml"
 alias ua="useradd"
 alias un="uniq"
 alias us="users"
@@ -238,9 +243,11 @@ alias python="python3"
 alias path="echo -e ${PATH//:/\\n}"
 alias ping="ping -c 5"
 alias pop="popd"
+alias pw="pwd"
 alias ports="netstat -tulanp"
 alias push="pushd"
 alias root="sudo -i"
+alias rsync="rsync -av --progress"
 alias wget="wget -c"
 alias which="type -a"
 alias count="ind . -type f | wc -l"
@@ -280,7 +287,7 @@ alias Reboot="sudo reboot"
 alias Install="sudo apt-get install || sudo apt install"
 alias Update="sudo apt-get update && sudo apt-get upgrade -y"
 alias Trash="rm -rf ${HOME}/.local/share/Trash/*"
-alias editalias="gedit ${HOME}/.bash_aliases && upgradealias"
+alias editalias="gedit ${HOME}/.bash_aliases"
 alias installvimplugins="vim +PluginInstall +qall"
 alias editvimrc="sudo nano ${HOME}/.vimrc"
 alias localhost="ssh localhost"
