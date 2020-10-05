@@ -7,7 +7,7 @@ def compute(x):
     try:
         x = int(x)
     except:
-        print("ERROR: dectobin needs binary characters")
+        print("ERROR: dectobin needs decimal characters")
         exit(1)
 
 

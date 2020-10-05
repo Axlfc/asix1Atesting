@@ -43,7 +43,7 @@ e()
 	fi
 }
 alias f="find"
-alias g="grep -Rnwi -C 1 --color . -e $1"
+alias g="git"
 alias h="history"
 alias i="cat"
 alias j="jobs -l"
@@ -61,7 +61,7 @@ o()
 		nemo "$1"
 	fi
 }
-alias p="python3"
+alias p="pypy3"
 alias q="exit"
 alias r="rm -R"
 alias s="psg"
@@ -96,7 +96,9 @@ alias fh="find . -name "
 alias fw="iptlist"
 alias matrix="cmatrix"
 alias music="sfxr"
-alias gr="g reset --hard"
+alias gr="grep -Rnwi -C 1 --color . -e $1"
+alias grh="g reset --hard"
+
 alias gro="groups"
 alias addgro="groupadd"
 alias delgro="groupdel"
@@ -141,6 +143,7 @@ ts()
 }
 alias tx="tilix &"
 alias tk="t kill-ses"
+alias tm="tmate"
 alias tl="t ls"
 alias tds="t a #"
 alias tks="tmux kill-server"
@@ -211,7 +214,7 @@ pdf()
 {
 	pdfgrep -in $1 *.pdf
 }
-alias pull="g pull"
+alias pull="git pull"
 alias sid="env | grep ORACLE_SID"
 alias sha1="openssl sha1"
 alias top="atop"
@@ -248,6 +251,7 @@ alias ports="netstat -tulanp"
 alias push="pushd"
 alias root="sudo -i"
 alias rsync="rsync -av --progress"
+alias sample="teamocil sample"
 alias wget="wget -c"
 alias which="type -a"
 alias count="ind . -type f | wc -l"
@@ -311,3 +315,29 @@ alias gedit="featherpad"
 alias edit="nedit"
 alias newt="tmux new -s"
 alias oldt="tmux new -s default"
+
+hextobin()
+{
+	hextodec $1 | dectobin
+}
+utftobin()
+{
+	utftodec $1 | dectobin
+}
+hextoutf()
+{
+	hextodec $1 | dectoutf
+}
+bintoutf()
+{
+	bintodec $1 | dectoutf
+}
+bintohex()
+{
+	bintodec $1 | dectohex
+}
+utftohex()
+{
+	utftodec $1 | dectohex
+}
+
