@@ -30,15 +30,11 @@ def canviarDigits(digit):
         exit(1)
     return digit
 
-try:
-    if not sys.stdin.isatty():
-        y = sys.stdin.readlines()[0].split(" ")[0].rstrip("\n").lstrip("\n")
-        y = computer(y)
-        print(y)
-        exit(0)
-except ValueError:
-    print("ERROR: hextodec needs hexadecimal characters.")
-    exit(1)
+if not sys.stdin.isatty():
+    y = sys.stdin.readlines()[0].split(" ")[0].rstrip("\n").lstrip("\n")
+    y = computer(y)
+    print(y)
+    exit(0)
 
 if len(sys.argv) == 1:
     print("ERROR: hextodec needs one argument")
@@ -47,3 +43,4 @@ if len(sys.argv) == 1:
 res = sys.argv[1]
 data = computer(res)
 print(data)
+exit(0)

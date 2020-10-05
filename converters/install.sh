@@ -24,26 +24,15 @@ main()
       chmod u+x ${HOME}/.local/bin/dectobin
     fi
 
-    if [[ -f "bincalc.py" ]]; then
-      cp bincalc.py ${HOME}/.local/bin/bincalc
-      chmod u+x ${HOME}/.local/bin/bincalc
+    if [[ -f "dectoutf.py" ]]; then
+      cp dectoutf.py ${HOME}/.local/bin/dectoutf
+      chmod u+x ${HOME}/.local/bin/dectoutf
     fi
 
-    if [[ -f "asciitobin.py" ]]; then
-      cp asciitobin.py ${HOME}/.local/bin/asciitobin
-      chmod u+x ${HOME}/.local/bin/asciitobin
+    if [[ -f "utftodec.py" ]]; then
+      cp utftodec.py ${HOME}/.local/bin/utftodec
+      chmod u+x ${HOME}/.local/bin/utftodec
     fi
-
-    if [[ -f "bintoascii.py" ]]; then
-      cp bintoascii.py ${HOME}/.local/bin/bintoascii
-      chmod u+x ${HOME}/.local/bin/bintoascii
-    fi
-
-    if [[ -f "asciivalue.py" ]]; then
-      cp asciivalue.py ${HOME}/.local/bin/asciivalue
-      chmod u+x ${HOME}/.local/bin/asciivalue
-    fi
-
   fi
   packettracer_launcher="[Desktop Entry]
 Type=Application
