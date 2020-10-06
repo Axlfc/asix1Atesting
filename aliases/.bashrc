@@ -1,4 +1,4 @@
-echo “~/.bashrc loaded!”
+echo "~/.bashrc loaded!"
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -58,7 +58,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[00m\]:\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -127,6 +127,28 @@ alias dummycommit="git add -A; git commit -am "changes"; git push "
 HISTIGNORE="ls:ps:history:l:pwd:top:gitk"
 shopt -s cmdhist
 
+
+
+# Function that allows to extract any type of compressed files
+extract () {
+if [ -f $1 ] ; then
+    case $1 in
+    *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)       tar xvf $1      ;;
+    *.bz2)       bunzip2 $1     ;;
+    *.rar)       rar x $1     ;;
+    *.gz)        gunzip $1     ;;
+    *.lzma)      unlzma $1      ;;
+    *.zip)       unzip $1     ;;
+    *.Z)         uncompress $1  ;;
+    *.*.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)        7z x $1    ;;
+    *.xz)        unxz ./"$n"        ;;
+    *.exe)       cabextract ./"$n"  ;;
+    *)           echo "'$1' cannot be extracted via extract()" ;;
+    esac
+else
+    echo "'$1' is not a valid file"
+fi
+}
 # create a global per-pane variable that holds the pane's PWD
 export PS9=$PS9'$( [ -n $TMUX ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) $PWD)'
 
@@ -144,6 +166,8 @@ if [ -z "$TMUX" ]; then
     fi
 fi
 
+
+
 cd()
 {
     builtin cd $1
@@ -152,4 +176,4 @@ cd()
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
-alias upgradealias="source ~/.bashrc"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

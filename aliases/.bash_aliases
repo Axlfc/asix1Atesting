@@ -52,7 +52,7 @@ alias l="ls -Ahl"
 alias l.="ls -d .* --color=auto"
 alias m="mcedit -a"
 alias n="nvim"
-alias ñ="du -sh * | sort -h"
+alias Ã±="du -sh * | sort -h"
 o()
 {
 	if [[ -z "$1" ]]; then
@@ -119,7 +119,7 @@ alias lx="ls -lXB"
 alias lss="less"
 alias mv="mv -i"
 alias np="notepad-plus-plus"
-alias ñs="ls -CF"
+alias Ã±s="ls -CF"
 alias op="open"
 alias ps="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -315,7 +315,7 @@ alias gedit="featherpad"
 alias edit="nedit"
 alias newt="tmux new -s"
 alias oldt="tmux new -s default"
-
+alias upgradealias="source ~/.bashrc"
 hextobin()
 {
 	hextodec $1 | dectobin
