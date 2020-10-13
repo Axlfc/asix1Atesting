@@ -71,7 +71,7 @@ alias l.="ls -d .* --color=auto"
 alias m="mcedit -a"
 alias man="man %*"
 alias n="nvim"
-alias Ã±="du -sh * | sort -h"
+alias ñ="du -sh * | sort -h"
 o()
 {
 	if [[ -z "$1" ]]; then
@@ -243,7 +243,7 @@ export LESS_TERMCAP_us
 alias mv="mv -i"
 alias np="notepad-plus-plus"
 alias nr="net-restart"
-alias Ã±s="ls -CF"
+alias ñs="ls -CF"
 alias op="open"
 alias ps="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -474,7 +474,7 @@ alias oldt="tmux new -s default"
 {
     local IFS=' '
     local calc="$*"
-    # Uncomment the below for (p â +) and (x â *)
+    # Uncomment the below for (p → +) and (x → *)
     #calc="${calc//p/+}"
     #calc="${calc//x/*}"
     printf '%s\n quit' "$calc" | gcalccmd | sed 's:^> ::g'
@@ -504,5 +504,4 @@ utftohex()
 {
 	utftodec $1 | dectohex
 }
-
 
