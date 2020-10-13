@@ -45,6 +45,51 @@ ssh -p 2222 <user>@<ip_address>
 #refresh path 
 hash -r
 
+Connecting to a server
+
+ssh name@server.com  (default port is 22)
+ssh name@server.com -p 8000 (connect to specific port)
+ssh name@server.com -i ~/.ssh/rsa_key.pub (connect with ssh key)
+
+.SSH Permissions
+
+These are safe permissions to use for SSH
+
+chmod 700 ~/.ssh
+chmod 644 ~/.ssh/id_rsa.pub
+chmod 600 ~/.ssh/id_rsa
+
+# Put your pubkeys (one per line) for SSH login
+chmod 600 ~/.ssh/authorized_keys
+
+Using the Config
+
+You can also create a ~/.ssh/config file and store entries such as:
+
+Host aws
+Hostname ec2-50-50-130-50.compute-1.amazonaws.com
+Port 22
+Identityfile ~/.ssh/id_rsa
+User myusername
+
+Host my-vps
+Hostname 50.50.130.50
+Port 22
+User root
+
+You can then simply type:
+
+ssh aws
+ssh my-vps
+
+SSH to PEM
+
+Sometimes you may need a PEM format SSH Key. You can easily add this alongside your other SSH keys.
+
+openssl rsa -in ~/.ssh/keyname_rsa -outform pem > keyname_rsa.pem
+chmod 700 keyname_rsa.pem
+
+
 #Copy one single local file to a remote destination
 scp /path/to/source-file user@host:/path/to/destination-folder/
 

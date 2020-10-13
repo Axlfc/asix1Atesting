@@ -1,5 +1,7 @@
 alias printestt="echo 'test'"
+alias :q="exit"
 alias a="echo '---------------Alias----------------';alias"
+alias aa="compgen -a"
 alias b="bash"
 c()
 {
@@ -69,7 +71,7 @@ alias l.="ls -d .* --color=auto"
 alias m="mcedit -a"
 alias man="man %*"
 alias n="nvim"
-alias ñ="du -sh * | sort -h"
+alias Ã±="du -sh * | sort -h"
 o()
 {
 	if [[ -z "$1" ]]; then
@@ -92,7 +94,6 @@ alias wh="which"
 alias wd="date +%A"
 alias wr="write"
 alias wll="wall"
-alias x="exit"
 alias z="zsh"
 alias at="tmux a -t"
 alias au="cut -d: -f1 /etc/passwd | so"
@@ -114,6 +115,7 @@ du ()
 }
 alias di="diff"
 alias diff="colordiff"
+alias clc="qalc"
 alias ec="echo"
 alias eg="egrep --color"
 alias fg="fgrep --color"
@@ -241,7 +243,7 @@ export LESS_TERMCAP_us
 alias mv="mv -i"
 alias np="notepad-plus-plus"
 alias nr="net-restart"
-alias ñs="ls -CF"
+alias Ã±s="ls -CF"
 alias op="open"
 alias ps="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -357,8 +359,8 @@ alias top="atop"
 alias txt="gedit"
 alias vis="vis '+set si'"
 alias www="python -m SimpleHTTPServer 8000"
-alias whris="whereis"
-alias whtis="whatis"
+alias whrs="whereis"
+alias whts="whatis"
 alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
 alias xyz="cat $0"
 alias zsh="zsh"
@@ -366,6 +368,7 @@ alias book="o ${HOME}/Escritorio/BOOKSCRATCH/UOCBookScratcher/books"
 alias browser="lynx"
 alias CALENDAR="cal"
 alias CALCULATOR="bc"
+alias calculator="gnome-calculator"
 alias dnstop="dnstop -l 5  eth1"
 alias vnstat="vnstat -i eth1"
 alias iftop="iftop -i eth1"
@@ -376,6 +379,7 @@ alias grub="sudo nano /etc/default/grub"
 alias grubup="sudo update-grub"
 alias header="curl -I"
 alias left="ls -t -1"
+alias sl="sleep"
 alias most="du -shx * | g -w "[0-9]*G""
 alias mount="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort"
 alias mkdir="mkdir -pv"
@@ -404,6 +408,9 @@ alias curli="curl -I"
 alias speed="speedtest-cli --server 17233 --simple"
 alias serverspeed="speedtest-cli --list"
 alias download="wget"
+alias firewall="sudo ufw status verbose"
+alias enableFirewall="sudo ufw enable"
+alias disableFirewall="sudo ufw disable"
 alias httpTest="sudo /usr/sbin/apachectl -t && /usr/sbin/apachectl -S"
 alias httpReload="sudo /usr/sbin/apachectl -k graceful"
 alias httpRestart="sudo /etc/init.d/httpd restart"
@@ -463,6 +470,15 @@ alias gedit="featherpad"
 alias edit="nedit"
 alias newt="tmux new -s"
 alias oldt="tmux new -s default"
+=()
+{
+    local IFS=' '
+    local calc="$*"
+    # Uncomment the below for (p â +) and (x â *)
+    #calc="${calc//p/+}"
+    #calc="${calc//x/*}"
+    printf '%s\n quit' "$calc" | gcalccmd | sed 's:^> ::g'
+}
 alias upgradealias="source ~/.bashrc"
 hextobin()
 {
@@ -488,4 +504,5 @@ utftohex()
 {
 	utftodec $1 | dectohex
 }
+
 
