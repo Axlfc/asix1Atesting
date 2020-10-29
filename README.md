@@ -1,5 +1,45 @@
 MANTAIN ALIAS IN ROOT MODE #TOP PRIORITY $USER IS NOT UPDATING PER TMUX SESSION
+powershell windows with bash aliases
+:)
+borrar prints antereiores en la conosola:
+Es decir, hacer desaparecer el 3, el 2o por arriba en el historial??¿ :S
+standard output de los aliases en maysu :\
+guardar sessiones de ssh con tls y guardar y borrarlas con ctrl+s sesions tmux?? lanzar comando como comando de bash???? :(
 
+posar que mati tot menys default tmux :)
+oldt te que entrar a la sessió default per molt que estigui duplicada
+
+moodle en bash <-- :)
+assembler unassembler (UA) in bash (nasm?)
+ansible(1), 
+ansible-config(1), 
+ansible-console(1), 
+ansible-doc(1), 
+ansible-galaxy(1), 
+ansible-inventory(1), 
+ansible-playbook(1), 
+ansible-pull(1), 
+ansible-vault(1),
+//
+axl@:$ popd
+bash: popd: la pila de directorios está vacía
+axl@:$ pop
+bash: popd: la pila de directorios está vacía
+axl@:$ pwd
+/home/axl/Escritorio/diafiles
+//
+https://www.fprintf.net/vimCheatSheet.html
+make vim friendly
+
+dump into /etc/profile
+https://github.com/phusion/baseimage-docker/issues/54
+preserve bash environment as possible, change when needed
+
+instala y desinstala aliases necesarios via conexión ssh
+:P
+:sshrc??
+!!!!!!!!!!!!!!!
+la session ssh debe agarrar los aliases del host :S
 ssh -p 2222 axl@ipi
 
 ssh -p 2222 <user>@<ip_address>
