@@ -37,6 +37,7 @@ cpp-run()
     echo "Compiled! Enter input :D"
     ./"$1"
 }
+
 c-run() 
 {
     echo "Compiling file..."
@@ -141,6 +142,29 @@ o()
 	else
 		nemo "$1"
 	fi
+}
+
+session()
+{	if [[ -z "$1.yaml" ]]; then
+		tmuxp load $HOME/Escritorio/sessions/ses/$1.yaml
+	else
+		tmuxp load $HOME/Escritorio/sessions/ses/mysession.yaml
+	fi
+}
+
+freezesession()
+{
+
+	tmuxp freeze $1
+}
+tses()
+{
+	tmuxp load $HOME/Escritorio/sessions/ses/$1.json
+}
+
+tsesconvert()
+{
+	tmuxp convert -y $1
 }
 
 pdf()

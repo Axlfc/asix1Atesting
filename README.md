@@ -1,6 +1,41 @@
 MANTAIN ALIAS IN ROOT MODE #TOP PRIORITY $USER IS NOT UPDATING PER TMUX SESSION
 powershell windows with bash aliases
+https://tmuxp.git-pull.com/examples.html#super-advanced-dev-environment
+https://github.com/tmux-python/tmuxp
+https://tmuxp.git-pull.com/examples.html#bootstrap-project-before-launch
 :)
+
+forced attachedment alias!! :?
+oldt attach to 'default' if already attached session
+??? borrar comandes anteriors??
+que desaparegui del historial?¿?
+reordenar comandas de posición??
+comandas en buffer >> .txt??
+ncat alias??!?!?
+at
+tab tab does not autocomplete ;(
+alias 2t=""
+alias 3t=""
+alias 3t=""
+alias tstart=""
+
+session 'auto' must create itself y
+if no session exists every 26 seconds 
+auto starts a fresh ssh server every time if it's been closed
+is created as new session and controls private background ssh server
+
+if there is another auto session 'auto' already attached 
+it auto attaches to itself ignoring that it's attached by other
+
+or if there is no 'auto' session it fresh start itself 
+in background with new private ssh controled server 
+every 26 seconds if there is no authentified ssh host/client connected 
+it closes the session 'auto'
+in case < 26 seconds and other session connected and server stills on
+the 'auto' session would mantain previous ssh creds
+session auto saves itself every 26 seconds 
+while ssh trused opened and mantains ssh tight relation connection
+
 borrar prints antereiores en la conosola:
 Es decir, hacer desaparecer el 3, el 2o por arriba en el historial??¿ :S
 standard output de los aliases en maysu :\

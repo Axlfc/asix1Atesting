@@ -124,7 +124,7 @@ alias jc="jupyter console"
 alias jcb="jupyter console --kernel bash"
 alias jnb="jupyter notebook"
 alias jsh="jshell"
-alias k="gitk --all --date-order 	&"
+alias k="gitk --all --date-order  &"
 alias k9="kill -9"
 alias ksane='setterm -reset'
 alias killbyport="kill -9 \`lsof -i:3000 -t\`"
@@ -198,7 +198,7 @@ alias refreshpath="hash -r"
 alias s="psg"
 alias sd="sed"
 alias se="sudo -E bash"
-alias sl="sleep"alias sl="sleep"
+alias sl="sleep"
 alias so="sort"
 alias sv="su v"
 alias sid="env | grep ORACLE_SID"
@@ -329,26 +329,31 @@ alias sshDisable="sudo systemctl disable sshd"
 alias sshconf="sshConfig"
 alias sshConf="sshConfig"
 alias sshConfig="nano ${HOME}/.ssh/config"
-
 alias packetracer="packettracer"
 
+alias 2p="tses twopanes"
+alias 3p="tses threepanes"
+alias bp="tses blank"
+alias 4p="tses fourpanes"
+alias start="tses start"
+alias begin="tses shorthands"
+alias mysession="session mysession"
 alias editalias="gedit ${HOME}/.bash_aliases"
 alias upgradealias="source ~/.bashrc"
 
 hextoutf()
 {
-	hextodec $1 | dectoutf
+  hextodec $1 | dectoutf
 }
 bintoutf()
 {
-	bintodec $1 | dectoutf
+  bintodec $1 | dectoutf
 }
 bintohex()
 {
-	bintodec $1 | dectohex
+  bintodec $1 | dectohex
 }
 utftohex()
 {
-	utftodec $1 | dectohex
+  utftodec $1 | dectohex
 }
-
