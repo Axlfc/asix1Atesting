@@ -10,7 +10,7 @@ install_program()
 
 main()
 {
-  programfiles=(".bash_aliases" ".bash_functions" ".bash_profile" ".bashrc" ".tmux.conf" ".tmux_path.sh")
+  programfiles=(".bash_aliases" ".bash_functions" ".bash_profile" ".bashrc" ".tmux.conf" ".tmux_path.sh" ".vimrc" ".xonshrc" ".zshrc")
 
   if [[ "$(whoami)" == "root" ]]; then
     echo "ERROR: you need to be user"
