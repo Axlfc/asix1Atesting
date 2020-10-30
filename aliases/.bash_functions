@@ -1,3 +1,18 @@
+LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
+LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
+LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
+LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode    
+LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
+LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
+LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
+export LESS_TERMCAP_mb
+export LESS_TERMCAP_md
+export LESS_TERMCAP_me
+export LESS_TERMCAP_se
+export LESS_TERMCAP_so
+export LESS_TERMCAP_ue
+export LESS_TERMCAP_us
+
 att()
 {
 	tmux attach -t $1
@@ -92,27 +107,11 @@ e()
 	fi
 }
 
-du ()
+du()
 {
 	ncdu
 }
 
-gb()
-{
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-
-gc()
-{
-    local ZONE="us-eastern1-c"
-    local INSTANCE_NAME="myInstance"
-    gcloud compute ssh --zone="$ZONE" "jupyter@$INSTANCE_NAME" -- -L 8080:localhost:8080
-}
-
-gcm()
-{
-	git commit -m "$*";
-}
 
 gif2webm() 
 {
@@ -250,12 +249,3 @@ mkcd()
     cd $1
 }
 
-=()
-{
-    local IFS=' '
-    local calc="$*"
-    # Uncomment the below for (p → +) and (x → *)
-    #calc="${calc//p/+}"
-    #calc="${calc//x/*}"
-    printf '%s\n quit' "$calc" | gcalccmd | sed 's:^> ::g'
-}

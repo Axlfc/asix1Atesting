@@ -1,20 +1,5 @@
 alias printtest="echo 'test'"
 
-LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
-LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
-LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
-LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode    
-LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
-LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
-LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
-export LESS_TERMCAP_mb
-export LESS_TERMCAP_md
-export LESS_TERMCAP_me
-export LESS_TERMCAP_se
-export LESS_TERMCAP_so
-export LESS_TERMCAP_ue
-export LESS_TERMCAP_us
-
 alias :q="exit"
 alias ..="cd .."
 alias ...="cd ../../"
@@ -45,7 +30,6 @@ alias ct="cargo test"
 alias cw="cargo watch"
 alias cwr="cargo watch -x run"
 alias cd..="cd .."
-alias cg="cd `git rev-parse --show-toplevel`"
 alias cp="cp -prb"
 alias ct="cut"
 alias cap="adb shell screencap -p /sdcard/screen.png && \
@@ -109,7 +93,7 @@ alias gll="gl --stat"
 alias gls="gl --pickaxe-all -G "
 alias gt="git shortlog -s -n"
 alias status="git status"
-alias h="help"
+alias h="echo h"
 alias header="curl -I"
 alias i="cat"
 alias ipe="curl ipinfo.io/ip"
@@ -128,7 +112,7 @@ alias k="gitk --all --date-order  &"
 alias k9="kill -9"
 alias ksane='setterm -reset'
 alias killbyport="kill -9 \`lsof -i:3000 -t\`"
-alias l="ls -Ahl"
+alias l="clear && ls -Ahl"
 alias la="ll -A"
 alias lc="ls .ltcr"
 alias lk="ls -lSr"
@@ -138,8 +122,6 @@ alias lt="ls --human-readable --size -1 -S --classify"
 alias lu="ls -ltur"
 alias lx="ls -lXB"
 alias lss="less -XF --RAW-CONTROL-CHARS --LINE-NUMBERS --LONG-PROMPT"
-alias l.="ls -d .* --color=auto"
-alias .l="ls -d .* --color=auto"
 alias lll="ls -l $directory$prefix"
 alias loc="locate"
 alias lsl="ls -lhFA | less"
@@ -149,7 +131,6 @@ alias m="mcedit -a"
 alias man="man %*"
 alias md="mkdir"
 alias mem="free -m -l -t"
-alias most="du -shx * | g -w "[0-9]*G""
 alias mount="mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3; }' | column -t | egrep ^/dev/ | sort"
 alias mkdir="mkdir -pv"
 alias mnt="mount | grep -E ^/dev | column -t"
@@ -256,10 +237,11 @@ alias whrs="whereis"
 alias whts="whatis"
 alias whence="type -a"
 alias wifikey="sudo grep -r '^psk=' /etc/NetworkManager/system-connections/"
+alias x="clear && ls"
 alias xo="xdg-open"
 alias xt="xterm -bg black -fg white &"
 alias xyz="cat $0"
-alias z="zsh"
+alias zs="zsh"
 alias addgro="groupadd"
 alias delgro="groupdel"
 alias youtubewav="youtube-dl --extract-audio --audio-format wav"
@@ -271,7 +253,7 @@ alias httpReload="sudo /usr/sbin/apachectl -k graceful"
 alias httpRestart="sudo /etc/init.d/httpd restart"
 
 alias gedit="featherpad"
-alias fedit=" find . -name "$1*" -print0 | xargs -0 gedit"
+alias fedit="find . -name '$1*' -print0 | xargs -0 gedit"
 alias edit="nedit"
 
 alias ASIX="cd ${HOME}/Escritorio/git/asix1Atesting"
@@ -357,3 +339,4 @@ utftohex()
 {
   utftodec $1 | dectohex
 }
+
