@@ -151,16 +151,17 @@ session()
 		tmuxp load $HOME/Escritorio/sessions/ses/mysession.yaml
 	fi
 }
+tses()
+{
+	tmuxp load $HOME/Escritorio/sessions/ses/$1.json
+}
 
 freezesession()
 {
 
 	tmuxp freeze $1
 }
-tses()
-{
-	tmuxp load $HOME/Escritorio/sessions/ses/$1.json
-}
+
 
 tsesconvert()
 {
