@@ -323,17 +323,25 @@ alias mysession="session mysession"
 alias editalias="gedit ${HOME}/.bash_aliases"
 alias upgradealias="source ~/.bashrc"
 
-hextoutf()
+bintohex()
 {
-  hextodec $1 | dectoutf
+  bintodec $1 | dectohex
 }
 bintoutf()
 {
   bintodec $1 | dectoutf
 }
-bintohex()
+hextobin()
 {
-  bintodec $1 | dectohex
+	hextodec $1 | dectobin
+}
+hextoutf()
+{
+  hextodec $1 | dectoutf
+}
+utftobin()
+{
+	utftodec $1 | dectobin
 }
 utftohex()
 {
