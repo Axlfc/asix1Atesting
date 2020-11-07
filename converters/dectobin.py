@@ -12,7 +12,8 @@ def compute(x):
 
 
     bin = ""
-
+    if not x:
+        return x
     while x != 0:
         bin = str(x % 2) + bin
         x = int(x / 2)

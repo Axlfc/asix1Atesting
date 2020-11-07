@@ -21,4 +21,4 @@ main()
   fi
 }
 
-main "%@"
+main "$@"

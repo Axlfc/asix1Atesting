@@ -28,6 +28,9 @@ def DecAlHex(num):
         print("ERROR: dectohex needs decimal characters")
         exit(1)
     hex = ""
+    if not dec:
+    	print("0")
+    	return
     while dec != 0:
         rem = canviarDigits(dec % 16)
         hex = str(rem) + hex
