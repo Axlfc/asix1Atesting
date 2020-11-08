@@ -9,7 +9,7 @@ alias ac="ansible-console"
 alias ad="ansible-doc"
 alias add="git add $1"
 alias ah="alias -h"
-alias am='git commit -am "$1"'
+alias am="g commit -am $1"
 alias ap="ansible-playbook"
 alias aph="ap -h"
 alias at="tmux a -t"
@@ -66,6 +66,7 @@ alias fw="iptlist"
 alias free="free -mt"
 alias g="git"
 alias gco="git checkout"
+alias gcm="add $1 && am $2 && gp"
 alias gd="git diff --ignore-all-space 
                     --ignore-space-at-eol 
                     --ignore-space-change 
