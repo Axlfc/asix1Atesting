@@ -12,6 +12,11 @@ main()
       mv ~/${program}.bak ~/${program}
     done
   fi
+  rm -f ${HOME}/etc/bash_completion.d/ta
+  rm -f ${HOME}/etc/bash_completion.d/td
+  rm -f ${HOME}/etc/bash_completion.d/ts
+  rm -f cp config.fish ${HOME}/.config/fish/config.fish
+
 }
 
 main "%@"

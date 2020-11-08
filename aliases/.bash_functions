@@ -66,6 +66,11 @@ calculate()
 	echo $[$1]
 }
 
+newt()
+{
+  TMUX=`tmux new-session -d -s $1` && ts $1
+}
+
 dt()
 {
 	
@@ -198,6 +203,11 @@ ta()
   fi
 }
 
+td()
+{
+  tmux detach $1
+}
+
 ts()
 {
 	t switch -t $1
@@ -279,3 +289,4 @@ mkcd()
     mkdir -p $1
     cd $1
 }
+

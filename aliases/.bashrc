@@ -48,12 +48,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -108,6 +108,18 @@ fi
 
 if [ -e $HOME/.bash_functions ]; then
     source $HOME/.bash_functions
+fi
+
+if [ -f /etc/bash_completion.d/ta ]; then
+. /etc/bash_completion.d/ta
+fi
+
+if [ -f /etc/bash_completion.d/td ]; then
+. /etc/bash_completion.d/td
+fi
+
+if [ -f /etc/bash_completion.d/ts ]; then
+. /etc/bash_completion.d/ts
 fi
 
 # enable programmable completion features (you don't need to enable
