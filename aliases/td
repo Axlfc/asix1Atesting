@@ -1,3 +1,4 @@
+# /etc/bash_completion.d/td
 _td() {
     TMUX_SESSIONS=$(tmux ls -F '#S' | xargs)
 

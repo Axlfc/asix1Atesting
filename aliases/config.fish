@@ -1,4 +1,4 @@
-
+# fish directory folder = /.config/fish/config.fish
 if [[ -f ~/.config/fish/config.fish ]]; then
 	. ~/.config/fish/config.fish
 fi
