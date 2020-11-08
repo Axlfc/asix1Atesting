@@ -66,6 +66,23 @@ calculate()
 	echo $[$1]
 }
 
+dt()
+{
+	
+	CONTADOR=0
+
+	while [ "$*" ]
+	do
+		if [[ $1 == "default" ]]; then
+	  	  shift
+		else
+	  	  let CONTADOR=$CONTADOR+1
+	  	  tmux new-session -d -s $1
+    	shift
+  	fi
+    	
+	done
+}
 e()
 {
 	if [[ -z "$1" ]]; then
@@ -188,7 +205,21 @@ ts()
 
 tsk() 
 {
-  t kill-session -t $1
+
+CONTADOR=0
+
+while [ "$*" ]
+do
+	if [[ $1 == "default" ]]; then
+	  shift
+	else
+	  let CONTADOR=$CONTADOR+1
+	  t kill-session -t $1 
+    shift
+  fi
+    
+done
+
 }
 
 trs()
@@ -248,4 +279,3 @@ mkcd()
     mkdir -p $1
     cd $1
 }
-
