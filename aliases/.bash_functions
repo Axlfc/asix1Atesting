@@ -43,6 +43,7 @@ c()
 	fi
 }
 
+
 commit()
 {
     message=$*
@@ -52,6 +53,7 @@ commit()
     fi
     git commit -am "$message"
 }
+
 
 dt()
 {
@@ -123,6 +125,7 @@ ltf()
 {
     ls ${HOME}/$*
 }
+
 
 o()
 {
