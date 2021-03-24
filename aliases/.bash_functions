@@ -43,12 +43,15 @@ c()
 	fi
 }
 
-
 commit()
 {
-    git commit -am "$1"
+    message=$*
+    if [ -z "$message" ]; then
+    echo "Add a message"
+    return 1
+    fi
+    git commit -am "$message"
 }
-
 
 dt()
 {
@@ -210,3 +213,4 @@ mkcd()
     mkdir -p $1
     cd $1
 }
+source /home/axl/.bin/bash-functions/youtube-wav_alias.sh
