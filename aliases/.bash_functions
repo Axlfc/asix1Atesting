@@ -1,22 +1,37 @@
-LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
-LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
-LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
-LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode    
-LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
-LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
-LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
-export LESS_TERMCAP_mb
-export LESS_TERMCAP_md
-export LESS_TERMCAP_me
-export LESS_TERMCAP_se
-export LESS_TERMCAP_so
-export LESS_TERMCAP_ue
-export LESS_TERMCAP_us
+
+
+bintohex()
+{
+  bintodec $1 | dectohex
+}
+bintoutf()
+{
+  bintodec $1 | dectoutf
+}
+hextobin()
+{
+  hextodec $1 | dectobin
+}
+hextoutf()
+{
+  hextodec $1 | dectoutf
+}
+utftobin()
+{
+  utftodec $1 | dectobin
+}
+utftohex()
+{
+  utftodec $1 | dectohex
+}
+
 
 att()
 {
 	tmux attach -t $1
 }
+
+
 c()
 {
 	if [[ -d "$1" ]]; then
@@ -28,70 +43,28 @@ c()
 	fi
 }
 
-cdl()
-{
-	cd "$1" || return
-	ls
-}
-
-cl() {
-    DIR="$*";
-        # if no DIR given, go home
-        if [ $# -lt 1 ]; then
-                DIR=$HOME;
-    fi;
-    builtin cd "${DIR}" && \
-    # use your preferred ls command
-        ls -F --color=auto
-}
-
-cpp-run() 
-{
-    echo "Compiling file..."
-    g++ -o "$1" "$1.cpp"
-    echo "Compiled! Enter input :D"
-    ./"$1"
-}
-
-c-run() 
-{
-    echo "Compiling file..."
-    gcc -o "$1" "$1.c"
-    echo "Compiled! Enter input :D"
-    ./"$1"
-}
-
-calculate()
-{
-	echo $[$1]
-}
-
-newt()
-{
-  TMUX=`tmux new-session -d -s $1` && ts $1
-}
 
 dt()
 {
-	
 	CONTADOR=0
 
 	while [ "$*" ]
 	do
 		if [[ $1 == "default" ]]; then
-	  	  shift
+		  shift
 		else
-	  	  let CONTADOR=$CONTADOR+1
-	  	  tmux new-session -d -s $1
-    	shift
-  	fi
-    	
+		  let CONTADOR=$CONTADOR+1
+		  tmux new-session -d -s $1
+	shift
+	fi	
 	done
 }
+
+
 e()
 {
 	if [[ -z "$1" ]]; then
-		featherpad &
+		pluma &
 	else
 		if [[ -f "$1" ]]; then
 			if [[ ! -z $(echo "$1" | grep -Fo "/") ]]; then
@@ -101,7 +74,7 @@ e()
 			fi
 			file=$(echo "$1" | rev | cut -d '/' -f1 | rev)
 
-			featherpad "$file" &
+			pluma "$file" &
 		else
 			if [[ -d "$1" ]]; then
 				cd $1
@@ -120,40 +93,26 @@ e()
 					mkdir -p "${dir}"
 					cd "${dir}"
 					file=$(echo "$1" | rev | cut -d '/' -f1 | rev)
-					featherpad "${file}" &
+					pluma "${file}" &
 				else
-					featherpad "$1" &
+					pluma "$1" &
 				fi
 			fi
 		fi
 	fi
 }
 
-du()
+
+freezesession()
 {
-	ncdu
+
+	tmuxp freeze $1
 }
 
 
-gif2webm() 
+ltf() 
 {
-    ffmpeg -i $1.gif -c vp9 -b:v 0 -crf 41 $1.webm
-}
-
-function man()
-{
-	LESS_TERMCAP_md=$'\e[01;31m' \
-		LESS_TERMCAP_me=$'\e[0m' \
-		LESS_TERMCAP_se=$'\e[0m' \
-		LESS_TERMCAP_so=$'\e[01;44;33m' \
-		LESS_TERMCAP_ue=$'\e[0m' \
-		LESS_TERMCAP_us=$'\e[01;32m' \
-		command man "$@"
-}
-
-Cmatrix()
-{
-	matrix -C $1
+    ls ${HOME}/$*
 }
 
 o()
@@ -165,6 +124,7 @@ o()
 	fi
 }
 
+
 session()
 {	if [[ -z "$1.yaml" ]]; then
 		tmuxp load $HOME/Escritorio/sessions/ses/$1.yaml
@@ -172,27 +132,7 @@ session()
 		tmuxp load $HOME/Escritorio/sessions/ses/mysession.yaml
 	fi
 }
-tses()
-{
-	tmuxp load $HOME/Escritorio/sessions/ses/$1.json
-}
 
-freezesession()
-{
-
-	tmuxp freeze $1
-}
-
-
-tsesconvert()
-{
-	tmuxp convert -y $1
-}
-
-pdf()
-{
-	pdfgrep -in $1 *.pdf
-}
 
 ta()
 {
@@ -203,19 +143,45 @@ ta()
   fi
 }
 
+
 td()
 {
   tmux detach $1
 }
+
+
+trs()
+{
+	t rename-session $1
+}
+
 
 ts()
 {
 	t switch -t $1
 }
 
+
+tsend()
+{
+    t send -t "$1" "$2" Enter
+}
+
+
+tses()
+{
+	tmuxp load $HOME/Escritorio/sessions/ses/$1.json
+}
+
+
+tsesconvert()
+{
+	tmuxp convert -y $1
+}
+
+
 tsk() 
 {
-
 CONTADOR=0
 
 while [ "$*" ]
@@ -229,64 +195,12 @@ do
   fi
     
 done
-
 }
 
-trs()
-{
-	t rename-session $1
-}
 
-up()
-{
-	for ((i = 1; i <= $1; i++)); do
-		cd ..
-	done
-}
 
-wttr()
-{
-	curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-pasadena-ca}"
-}
-
-global_make()
-{
-	if [[ -e 'GNUmakefile'  ||  -e 'makefile'  ||  -e 'Makefile' ]] ; then
-		make -j "$@"
-	elif  [[ $PWD == *'/home/mkarpoff/UVa'* ]]; then
-		echo 'Making using UVa makefile'
-		/usr/bin/make -f /home/mkarpoff/UVa/Support/Makefile "$*"
-	else
-		make --file=~/.global_makefile "$@"
-	fi
-}
-
-noglob_helper() {
-    "$@"
-    case "$shopts" in
-        *noglob*) ;;
-        *) set +f ;;
-    esac
-    unset shopts
-}
-
-echo-literally-helper() {
-    str="`history 1 | perl -pe 's/^ *[0-9]+ +[^ ]+ //'`"
-    echo "$str"
-}
-
-his()
-{
-	history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
-}
-
-ltf() 
-{
-    ls ${HOME}/$*
-}
 mkcd()
 {
     mkdir -p $1
     cd $1
 }
-
