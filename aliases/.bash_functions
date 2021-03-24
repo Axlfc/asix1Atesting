@@ -44,6 +44,12 @@ c()
 }
 
 
+commit()
+{
+    git commit -am "$1"
+}
+
+
 dt()
 {
 	CONTADOR=0
