@@ -5,7 +5,7 @@ alias _i='sudo -i'
 alias cls='clear;ls'
 alias em='emacs -nw'
 alias fucking='sudo'
-alias l='clear && ls -lAh --color=auto'
+#alias l='clear && ls -lAh --color=auto'
 alias lt="ls --human-readable --size -1 -S --classify"
 alias please='sudo'
 alias plz="fc -l -1 | cut -d' ' -f2- | xargs sudo"
@@ -15,16 +15,17 @@ alias ...="cd ../../"
 alias ..="cd .."
 alias :q!="exit"
 alias :q="exit"
-alias ASIX="cd ${HOME}/Desktop/git/asix1Atesting"
+alias ASIX="cd ${XDG_DESKTOP_DIR}/git/asix1Atesting"
 alias CALENDAR="cal"
-alias CUSTOMIZER="cd ${HOME}/Desktop/git/Linux-Auto-Customizer"
-alias DCMNTS="cd ${HOME}/Documentos"
-alias DSKTP="cd ${HOME}/Desktop"
+alias CUSTOMIZER="cd ${XDG_DESKTOP_DIR}/git/Linux-Auto-Customizer"
+alias DCMNTS="cd ${XDG_DOCUMENTS_DIR}"
+alias DSKTP="cd ${XDG_DESKTOP_DIR}"
 alias DSKTPFLDR="cd /usr/share/applications"
-alias DWNLDS="cd ${HOME}/Descargas"
-alias GIT="cd ${HOME}/Desktop/git"
+alias DWNLDS="cd ${XDG_DESKTOP_DIR}"
+alias GIT="cd ${XDG_DESKTOP_DIR}/git"
 alias HDD="cd ${HOME}; cd ..; cd /media/sf_Shared_Files"
 alias HM="cd ${HOME}"
+alias MSC="cd ${XDG_MUSIC_DIR}"
 alias LOCALDSKTPFLDR="cd ${HOME}/.local/share/applications"
 alias OS="uname"
 alias PORTS="netstat -tulanp"
@@ -220,6 +221,28 @@ alias fancy='figlet $@'
 alias life='figlet 42 | lolcat'
 alias tuxsay='cowsay -f tux '
 
+
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+
+
+alias ls='ls --color=auto'
+#alias dir='dir --color=auto'
+#alias vdir='vdir --color=auto'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l="ls -lAh "
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 #Fails UTF-8 friendly
 alias cear='clear'

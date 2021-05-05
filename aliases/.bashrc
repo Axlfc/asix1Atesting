@@ -1,5 +1,4 @@
-echo "~/.bashrc loaded!"
-# ~/.bashrc: executed by bash(1) for non-login shells.
+  # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -48,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-		# We have color support; assume it's compliant with Ecma-48
-		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-		# a case would tend to support setf rather than setaf.)
-		color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-		color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -76,34 +75,30 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    
 fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l="ls -lAh "
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
+if [ -f $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
+
+if [ -f ~/.bash_features ]; then
+    source ~/.bash_features
+fi
+
+if [ -f ${HOME}/.config/user-dirs.dirs ]; then
+    source ${HOME}/.config/user-dirs.dirs
+fi
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
 fi
 
 if [ -e $HOME/.bash_functions ]; then
@@ -111,15 +106,15 @@ if [ -e $HOME/.bash_functions ]; then
 fi
 
 if [ -f /etc/bash_completion.d/ta ]; then
-. /etc/bash_completion.d/ta
+    source /etc/bash_completion.d/ta
 fi
 
 if [ -f /etc/bash_completion.d/td ]; then
-. /etc/bash_completion.d/td
+    source /etc/bash_completion.d/td
 fi
 
 if [ -f /etc/bash_completion.d/ts ]; then
-. /etc/bash_completion.d/ts
+    source /etc/bash_completion.d/ts
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -134,37 +129,9 @@ if ! shopt -oq posix; then
 fi
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/axl/.local/bin:/home/axl/.local/bin
 export DESK=/home/axl/Escritorio
-alias gitk="gitk --all --date-order "
-alias dummycommit="git add -A; git commit -am "changes"; git push "
-HISTIGNORE="ls:ps:history:l:pwd:top:gitk"
-shopt -s cmdhist
 
-
-
-# Function that allows to extract any type of compressed files
-extract () {
-if [ -f $1 ] ; then
-    case $1 in
-    *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)       tar xvf $1      ;;
-    *.bz2)       bunzip2 $1     ;;
-    *.rar)       rar x $1     ;;
-    *.gz)        gunzip $1     ;;
-    *.lzma)      unlzma $1      ;;
-    *.zip)       unzip $1     ;;
-    *.Z)         uncompress $1  ;;
-    *.*.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)        7z x $1    ;;
-    *.xz)        unxz ./"$n"        ;;
-    *.exe)       cabextract ./"$n"  ;;
-    *)           echo "'$1' cannot be extracted via extract()" ;;
-    esac
-else
-    echo "'$1' is not a valid file"
-fi
-}
 # create a global per-pane variable that holds the pane's PWD
 export PS9=$PS9'$( [ -n $TMUX ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) $PWD)'
-
-complete -W "$(teamocil --list)" teamocil
 
 if [ -z "$TMUX" ]; then
     attach_session=$(tmux 2> /dev/null ls -F \
@@ -178,52 +145,5 @@ if [ -z "$TMUX" ]; then
     fi
 fi
 
-cd()
-{
-    builtin cd $1
-    tmux refresh-client -S
-}
-eval "$(zoxide init posix --hook prompt)"
-eval "$(zoxide init bash)"
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-git status
-
-export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/:$PATH"
-export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
 
-
-L()
-{
-  NEW_LINE=$'\n'
-  lsdisplay=$(ls -lhA | tr -s " " | tail -n+2)
-  numfiles=$(printf \"$lsdisplay\" | wc -l)
-  dudisplay=$(du -shxc .[!.]* * | sort -h | tr -s "\t" " ")
-  totaldu=$(echo ${dudisplay} | rev | cut -d " " -f2 | rev)
-  finaldisplay="${totaldu} in ${numfiles} files and directories$NEW_LINE"
-  IFS=$'\n'
-  for linels in ${lsdisplay}; do
-    if [[ $linels =~ ^d.* ]]; then
-      foldername=$(echo $linels | cut -d ' ' -f9-)
-      for linedu in ${dudisplay}; do
-        if [[ "$(echo ${linedu} | cut -d ' ' -f2-)" = "${foldername}" ]]; then
-          currentline=$(echo ${linels} | cut -d " " -f-4)
-          currentline="$currentline $(echo ${linedu} | cut -d ' ' -f1)"
-          currentline="$currentline $(echo ${linels} | cut -d ' ' -f6-)"
-          finaldisplay="$finaldisplay$NEW_LINE$currentline"
-          break
-        fi
-      done
-    else
-      finaldisplay="$finaldisplay$NEW_LINE$linels"
-    fi
-  done
-  finaldisplay="${finaldisplay}$NEW_LINE$NEW_LINE"
-  printf "$finaldisplay"
-}
-
-source "$HOME/.cargo/env"

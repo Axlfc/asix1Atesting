@@ -1,34 +1,54 @@
 #!/usr/bin/env bash
 install_program()
 {
-  if [[ -f "$1" ]]; then
-  	name=$(echo '$1' | cut -d '.' -f1)
-    cp $1 ${HOME}/$name
-    chmod u+x ${HOME}/$name
+  file_name=$(echo "$1" | rev | cut -d "/" -f1 | rev)
+  if [[ -f "$file_name" ]]; then
+    cp -p "${DIR}/${file_name}" "$1"
+    chmod 751 "$1"
   fi
 }
 
 main()
 {
-  programfiles=(".bash_aliases" ".bash_functions" ".bash_profile" ".bash_completion" ".bashrc" ".tmux.conf" ".tmux_path.sh" ".vimrc" ".xonshrc" ".zshrc")
+  programfiles=("/home/${SUDO_USER}/.bash_aliases" 
+    "/home/${SUDO_USER}/.bash_features"
+    "/home/${SUDO_USER}/.bash_profile" 
+    "/home/${SUDO_USER}/.bash_completion" 
+    "/home/${SUDO_USER}/.bashrc" 
+    "/home/${SUDO_USER}/.tmux.conf" 
+    "/home/${SUDO_USER}/.tmux_path.sh" 
+    "/home/${SUDO_USER}/.vimrc" 
+    "/home/${SUDO_USER}/.xonshrc" 
+    "/home/${SUDO_USER}/.zshrc"
+    "/home/${SUDO_USER}/.config/fish/config.fish"
+    "/etc/bash_completion.d/ta" 
+    "/etc/bash_completion.d/td" 
+    "/etc/bash_completion.d/ts" 
+    "/etc/bash_completion.d/tsk" 
+    "/etc/bash_completion.d/attach")
 
-  if [[ "$(whoami)" == "root" ]]; then
-    echo "ERROR: you need to be user"
+  if [[ "$(whoami)" != "root" ]]; then
+    echo "ERROR: you need to be root"
     exit 1
   else
-    for program in ${programfiles[@]}; do
-      cp ~/${program} ~/${program}.bak
+    # We perform a secure backup of previous files with same name
+    for program in "${programfiles[@]}"; do
+      cp "${program}" "${program}.bak"
     done
-    for program in ${programfiles[@]}; do
-    	install_program $program
+    for program in "${programfiles[@]}"; do
+    	install_program "${program}"
     done
-  fi
-
-
-  if [[ -f "config.fish" ]]; then
-    cp config.fish ${HOME}/.config/fish/config.fish
-    chmod u+x ${HOME}/.config/fish/config.fish
+    if [[ -f "/home/${SUDO_USER}/.bash_functions" ]]; then
+      echo "source /home/${SUDO_USER}/.bash_functions" >> "/home/${SUDO_USER}/.bashrc"
+    fi
   fi
 }
+
+
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "${DIR}" ]]; then
+  DIR="${PWD}"
+fi
+
 
 main "%@"

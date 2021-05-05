@@ -43,6 +43,13 @@ c()
 	fi
 }
 
+cd()
+{
+    builtin cd $1
+    tmux refresh-client -S
+}
+
+
 
 commit()
 {
@@ -121,6 +128,36 @@ freezesession()
 }
 
 
+L()
+{
+  NEW_LINE=$'\n'
+  lsdisplay=$(ls -lhA | tr -s " " | tail -n+2)
+  numfiles=$(printf \"$lsdisplay\" | wc -l)
+  dudisplay=$(du -shxc .[!.]* * | sort -h | tr -s "\t" " ")
+  totaldu=$(echo ${dudisplay} | rev | cut -d " " -f2 | rev)
+  finaldisplay="${totaldu} in ${numfiles} files and directories$NEW_LINE"
+  IFS=$'\n'
+  for linels in ${lsdisplay}; do
+    if [[ $linels =~ ^d.* ]]; then
+      foldername=$(echo $linels | cut -d ' ' -f9-)
+      for linedu in ${dudisplay}; do
+        if [[ "$(echo ${linedu} | cut -d ' ' -f2-)" = "${foldername}" ]]; then
+          currentline=$(echo ${linels} | cut -d " " -f-4)
+          currentline="$currentline $(echo ${linedu} | cut -d ' ' -f1)"
+          currentline="$currentline $(echo ${linels} | cut -d ' ' -f6-)"
+          finaldisplay="$finaldisplay$NEW_LINE$currentline"
+          break
+        fi
+      done
+    else
+      finaldisplay="$finaldisplay$NEW_LINE$linels"
+    fi
+  done
+  finaldisplay="${finaldisplay}$NEW_LINE$NEW_LINE"
+  printf "$finaldisplay"
+}
+
+
 ltf() 
 {
     ls ${HOME}/$*
@@ -149,9 +186,9 @@ session()
 ta()
 {
   if [[ -z $1 ]]; then
-    t attach
+    tmux attach
   else
-    t attach -t "$1"
+    tmux attach -t "$1"
   fi
 }
 
@@ -164,19 +201,19 @@ td()
 
 trs()
 {
-	t rename-session $1
+	tmux rename-session $1
 }
 
 
 ts()
 {
-	t switch -t $1
+	tmux switch -t $1
 }
 
 
 tsend()
 {
-    t send -t "$1" "$2" Enter
+    tmux send -t "$1" "$2" Enter
 }
 
 
@@ -202,7 +239,7 @@ do
 	  shift
 	else
 	  let CONTADOR=$CONTADOR+1
-	  t kill-session -t $1 
+	  tmux kill-session -t $1 
     shift
   fi
     
